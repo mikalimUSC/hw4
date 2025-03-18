@@ -68,6 +68,8 @@ int main()
   test4("Test4");
   test5("Test5");
  
+
+ //expected: t, t,t,t, f
   delete a;
   delete b;
   delete c;
