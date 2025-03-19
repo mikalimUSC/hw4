@@ -16,6 +16,13 @@ bool equalPaths(Node * root)
         return true;
     }
 
+    if(root->left != nullptr && root->right == nullptr){
+        return false;
+    }
+
+    if(root->left == nullptr && root->right != nullptr){
+        return false;
+    }
     int left = findLevels(root->left);
     int right = findLevels(root->right);
 
