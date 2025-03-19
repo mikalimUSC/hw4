@@ -8,60 +8,62 @@ using namespace std;
 
 
 // You may add any prototypes of helper functions here
-int checkPathLength(Node *root, int expectedLength);
+int findLevels(Node *root);
 
 bool equalPaths(Node * root)
 {
     if(root==nullptr){
         return true;
     }
-    if(root->right == nullptr && root->left == nullptr){
-        return true;
-    }
-    int pathCount =  checkPathLength(root, -1);
-    return pathCount != 0;
+
+    int left = findLevels(root->left);
+    int right = findLevels(root->right);
+
+    // cout << "left: " << left<<endl;
+    // cout << "right: " << right<<endl;
+
+    return left==right;
 }
 
-//expected length -1 is default/when you havent checked any paths yet
-int checkPathLength(Node *root, int expectedLength) {
-    if(root->right == nullptr && root->left == nullptr){
-        if(expectedLength == -1) {
-            return 0; 
-        } else {
-            return (expectedLength == 0); 
-        }
+
+//returns number of levels of one branch(determiend by direction)
+int findLevels(Node *root) {
+   
+    if (!root ) {
+        return 0;
+    }
+     //cout << " KEY: " << root->key<<endl;
+
+    int left = 0;
+    int right = 0;
+
+    if (root->left != nullptr){
+        left = findLevels(root->left);
+      //  cout << "left is received as  " << left << endl;
     }
 
-    int leftSum = -1;
-    int rightSum = -1;
-
-    if(root->left != nullptr) {
-        leftSum = 1 + checkPathLength(root->left, -1);
+     if (root->right != nullptr){
+        right = findLevels(root->right);
+        // cout << "right is received as  " << right << endl;
     }
 
-    if(root->right != nullptr) {
-        rightSum = 1 + checkPathLength(root->right, -1);
-    }
-
-
-    if(leftSum != -1 && rightSum != -1) {
-        if(leftSum == rightSum) {
-            if(expectedLength == -1) {
-                return leftSum; 
-            } else {
-                return (expectedLength == leftSum);
-            }
-        }
-        return 0; 
-    }
-    int validPathLength;
-    if (leftSum != -1) {
-        validPathLength = leftSum;
-    } else {
-        validPathLength = rightSum;
-    }
-    if(expectedLength == -1) {
-        return validPathLength; 
-
+    //cout << "findLevels- right:  " << right << endl;
+  //  cout << "findLevels- left:  " << left << endl;
+    if(right > left){
+        //cout << "returning " << 1 + right<<endl;
+   
+        return 1+ right;
+    }else{
+          //   cout << "returning " << 1 + left<<endl;
+        return 1+ left;
     }
 }
+
+//b 
+// right = findLevels(d) = 1
+//left = 0;
+
+//d 
+//left =0;
+//right =0;
+//retuen 1;
