@@ -17,14 +17,15 @@ bool equalPaths(Node * root)
     }
 
     if(root->left != nullptr && root->right == nullptr){
-        if(equalPaths(root->right)){
+        if(equalPaths(root->left)){
             return true;
         }
         return false;
     }
 
     if(root->left == nullptr && root->right != nullptr){
-        if(equalPaths(root->left)){
+        if(equalPaths(root->right)){
+ 
             return true;
         }
         return false;
