@@ -73,11 +73,3 @@ int findLevels(Node *root) {
     }
 }
 
-//b 
-// right = findLevels(d) = 1
-//left = 0;
-
-//d 
-//left =0;
-//right =0;
-//retuen 1;

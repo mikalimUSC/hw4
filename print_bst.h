@@ -28,7 +28,6 @@ int getNodeDepth(BinarySearchTree<Key, Value> const & tree, Node<Key, Value> * r
         {
             return -2;
         }
-
         ++dist;
         node = node->getParent();
 
