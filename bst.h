@@ -340,7 +340,7 @@ typename BinarySearchTree<Key, Value>::iterator&
 BinarySearchTree<Key, Value>::iterator::operator++()
 {
    if (current_ == nullptr) {
-        // If current is nullptr, we are at the end of the traversal
+       
         return *this;
     }
 
@@ -729,13 +729,16 @@ bool BinarySearchTree<Key, Value>::isBalancedHelper(Node<Key, Value>* node) cons
     if (node == nullptr){
         return true;
     }
-    if(!isBalancedHelper(node->getLeft()) || !isBalancedHelper(node->getLeft())){
+    if(!isBalancedHelper(node->getLeft()) || !isBalancedHelper(node->getRight())){
         return false;
     }
 
+    
     int leftHeight = getSubtreeHeight(node->getLeft());
     int rightHeight = getSubtreeHeight(node->getRight());
-
+    // std::cout << "Node: " << node->getKey() << std::endl;
+    // std::cout << "BalancedHelper| leftHeight :" << leftHeight << std::endl;
+    // std::cout << "BalancedHelper| rightHeight :" << rightHeight << std::endl;
     if (abs(leftHeight -rightHeight) > 1){
         return false;
     }
