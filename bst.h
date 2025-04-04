@@ -339,7 +339,6 @@ template<class Key, class Value>
 typename BinarySearchTree<Key, Value>::iterator&
 BinarySearchTree<Key, Value>::iterator::operator++()
 {
-    //normalize?
    if (current_ == nullptr) {
         // If current is nullptr, we are at the end of the traversal
         return *this;
