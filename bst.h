@@ -232,24 +232,25 @@ public:
 public:
     iterator begin() const;
     iterator end() const;
-    iterator find(const Key& key) const;
+    virtual typename BinarySearchTree<Key, Value>::iterator find(const Key& key) const;
     Value& operator[](const Key& key);
     Value const & operator[](const Key& key) const;
+    virtual void printRoot (Node<Key, Value> *r) const;
 
 protected:
     // Mandatory helper functions
-    Node<Key, Value>* internalFind(const Key& k) const; // TODO
-     Node<Key, Value>* internalFindHelper(Node<Key, Value>* current, const Key& key) const;
+    virtual Node<Key, Value>* internalFind(const Key& k) const; // TODO
+    Node<Key, Value>* internalFindHelper(Node<Key, Value>* current, const Key& key) const;
     int getHeight(Node<Key, Value>* node) const;
     bool isBalancedHelper(Node<Key, Value>* node) const;
-    Node<Key, Value> *getSmallestNode() const;  // TODO
+    virtual Node<Key, Value> *getSmallestNode() const;  // TODO
     static Node<Key, Value>* predecessor(Node<Key, Value>* current); // TODO
     
     // Note:  static means these functions don't have a "this" pointer
     //        and instead just use the input argument.
 
     // Provided helper functions
-    virtual void printRoot (Node<Key, Value> *r) const;
+
     virtual void nodeSwap( Node<Key,Value>* n1, Node<Key,Value>* n2) ;
 
     // Add helper functions here
@@ -409,6 +410,12 @@ bool BinarySearchTree<Key, Value>::empty() const
 template<typename Key, typename Value>
 void BinarySearchTree<Key, Value>::print() const
 {
+    if(root_==nullptr){
+        std::cout << "In Bst print, root is null " << std::endl;
+    }else{
+    std::cout << "In Bst print, root is " << root_->getKey() << std::endl;
+    
+    }
     printRoot(root_);
     std::cout << "\n";
 }

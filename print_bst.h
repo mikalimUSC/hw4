@@ -268,6 +268,7 @@ void BinarySearchTree<Key, Value>::printRoot (Node<Key, Value>* root) const
         {
             std::cout << '[' << std::setfill('0') << std::setw(2) << ((uint16_t)placeholdersIter->second) << "] -> ";
 
+            
             // print element with original cout flags
             std::cout.flags(origCoutState);
             std::cout << '(' << placeholdersIter->first << ", ";
