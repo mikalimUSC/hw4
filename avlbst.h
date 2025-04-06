@@ -403,9 +403,51 @@ void AVLTree<Key, Value>::updateHeight(AVLNode<Key, Value>* node)
  * should swap with the predecessor and then remove.
  */
 template<class Key, class Value>
-void AVLTree<Key, Value>:: remove(const Key& key)
+void AVLTree<Key, Value>::remove(const Key& key)
 {
-    // TODO
+    AVLNode<Key, Value>* nodeToRemove = static_cast<AVLNode<Key, Value>*>(internalFind(key));
+
+    if (nodeToRemove == nullptr) {
+        return;
+    }
+
+    if (nodeToRemove->getLeft() != nullptr && nodeToRemove->getRight() != nullptr) {
+        AVLNode<Key, Value>* predecessor = static_cast<AVLNode<Key, Value>*>(this->getSmallestNode(nodeToRemove->getRight()));
+        nodeSwap(nodeToRemove, predecessor);
+        nodeToRemove = predecessor;
+    }
+
+    AVLNode<Key, Value>* child = nullptr;
+    if (nodeToRemove->getLeft() != nullptr) {
+        child = static_cast<AVLNode<Key, Value>*>(nodeToRemove->getLeft());
+    } else if (nodeToRemove->getRight() != nullptr) {
+        child = static_cast<AVLNode<Key, Value>*>(nodeToRemove->getRight());
+    }
+
+    if (child != nullptr) {
+        child->setParent(nodeToRemove->getParent());
+    }
+
+    if (nodeToRemove == this->root_) {
+        this->root_ = child;
+    } else if (nodeToRemove->getParent()->getLeft() == nodeToRemove) {
+        nodeToRemove->getParent()->setLeft(child);
+    } else {
+        nodeToRemove->getParent()->setRight(child);
+    }
+
+    delete nodeToRemove;
+
+    AVLNode<Key, Value>* parent = child ? child : nodeToRemove->getParent();
+    while (parent != nullptr) {
+        updateHeight(parent);
+
+        if (parent->getBalance() == 2 || parent->getBalance() == -2) {
+            rebalance(parent);
+            break;
+        }
+        parent = parent->getParent();
+    }
 }
 
 template<class Key, class Value>
