@@ -166,11 +166,6 @@ AVLTree<Key, Value>::AVLTree(): root_(nullptr)
 template <class Key, class Value>
 void AVLTree<Key, Value>::print() const
 {
-    if (root_ == nullptr) {
-        std::cout << "In AVLTree print, root is null " << std::endl;
-    } else {
-        std::cout << "In AVLTree print, root is " << root_->getKey() << std::endl;
-    }
     // Cast root_ to Node* before passing to printRoot AUAGHH
     this->printRoot(root_);
     std::cout << "\n";
@@ -242,7 +237,7 @@ AVLNode<Key, Value>* AVLTree<Key, Value>::leftRotate(AVLNode<Key, Value>* x) {
 
 template<class Key, class Value>
 AVLNode<Key, Value>* AVLTree<Key, Value>::rightRotate(AVLNode<Key, Value>* y) {
-    std::cout << "We in right rotate. Rotating " << y->getValue() <<  std::endl;
+  //  std::cout << "We in right rotate. Rotating " << y->getValue() <<  std::endl;
     AVLNode<Key, Value>* x = y->getLeft(); 
     AVLNode<Key, Value>* T2 = x->getRight();
 
