@@ -132,7 +132,7 @@ template<class Key, class Value>
 class AVLTree : public BinarySearchTree<Key, Value> {
 public:
     AVLTree();
-    // void print() const;
+    void print() const;
 
     virtual void insert(const std::pair<const Key, Value> &new_item); // TODO
     virtual void remove(const Key &key); // TODO
@@ -163,42 +163,42 @@ AVLTree<Key, Value>::AVLTree(): root_(nullptr)
 {
 }
 
-// template <class Key, class Value>
-// void AVLTree<Key, Value>::print() const
-// {
-//     // Cast root_ to Node* before passing to printRoot AUAGHH
-//     this->printRoot(root_);
-//     std::cout << "\n";
-//
-// }
+template <class Key, class Value>
+void AVLTree<Key, Value>::print() const
+{
+    // Cast root_ to Node* before passing to printRoot AUAGHH
+    this->printRoot(root_);
+    std::cout << "\n";
+
+}
 
 //
-// template<typename Key, typename Value>
-// Node<Key, Value>* AVLTree<Key, Value>::internalFind(const Key& key) const
-// {
-//     //std::cout << "AVLTree internal find" << std::endl;
-//     return internalFindHelper(static_cast<Node<Key, Value>*>(root_),key);
-// }
-//
-// template<typename Key, typename Value>
-//  Node<Key, Value>* AVLTree<Key, Value>::internalFindHelper(Node<Key, Value>* current, const Key& key) const {
-//         if (current == nullptr) {
-//             return nullptr;
-//         }
-//
-//         if (current->getKey() == key) {
-//             return current;
-//         }
-//
-//
-//         Node<Key, Value>* foundLeft = internalFindHelper(current->getLeft(), key);
-//         if (foundLeft != nullptr) {
-//             return foundLeft;
-//         }
-//
-//         return internalFindHelper(current->getRight(), key);
-//     }
-//
+template<typename Key, typename Value>
+Node<Key, Value>* AVLTree<Key, Value>::internalFind(const Key& key) const
+{
+    //std::cout << "AVLTree internal find" << std::endl;
+    return internalFindHelper(static_cast<Node<Key, Value>*>(root_),key);
+}
+
+template<typename Key, typename Value>
+ Node<Key, Value>* AVLTree<Key, Value>::internalFindHelper(Node<Key, Value>* current, const Key& key) const {
+        if (current == nullptr) {
+            return nullptr;
+        }
+
+        if (current->getKey() == key) {
+            return current;
+        }
+
+
+        Node<Key, Value>* foundLeft = internalFindHelper(current->getLeft(), key);
+        if (foundLeft != nullptr) {
+            return foundLeft;
+        }
+
+        return internalFindHelper(current->getRight(), key);
+    }
+
       
 template<class Key, class Value>
 AVLNode<Key, Value>* AVLTree<Key, Value>::leftRotate(AVLNode<Key, Value>* x) {

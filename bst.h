@@ -410,12 +410,7 @@ bool BinarySearchTree<Key, Value>::empty() const
 template<typename Key, typename Value>
 void BinarySearchTree<Key, Value>::print() const
 {
-    if(root_==nullptr){
-        std::cout << "In Bst print, root is null " << std::endl;
-    }else{
-    std::cout << "In Bst print, root is " << root_->getKey() << std::endl;
-    
-    }
+
     printRoot(root_);
     std::cout << "\n";
 }
