@@ -232,10 +232,10 @@ public:
 public:
     iterator begin() const;
     iterator end() const;
-    virtual typename BinarySearchTree<Key, Value>::iterator find(const Key& key) const;
+     typename BinarySearchTree<Key, Value>::iterator find(const Key& key) const;
     Value& operator[](const Key& key);
     Value const & operator[](const Key& key) const;
-    virtual void printRoot (Node<Key, Value> *r) const;
+   void printRoot (Node<Key, Value> *r) const;
 
 protected:
     // Mandatory helper functions
@@ -410,12 +410,12 @@ bool BinarySearchTree<Key, Value>::empty() const
 template<typename Key, typename Value>
 void BinarySearchTree<Key, Value>::print() const
 {
-    if(root_==nullptr){
-        std::cout << "In Bst print, root is null " << std::endl;
-    }else{
-    std::cout << "In Bst print, root is " << root_->getKey() << std::endl;
-    
-    }
+    // if(root_==nullptr){
+    //     std::cout << "In Bst print, root is null " << std::endl;
+    // }else{
+    // std::cout << "In Bst print, root is " << root_->getKey() << std::endl;
+    //
+    // }
     printRoot(root_);
     std::cout << "\n";
 }

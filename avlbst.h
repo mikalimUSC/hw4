@@ -153,9 +153,9 @@ protected:
 
     AVLNode<Key, Value> *root_;
 
-    Node<Key, Value> *internalFind(const Key &key) const override;
+   // Node<Key, Value> *internalFind(const Key &key) const override;
 
-    Node<Key, Value> *internalFindHelper(Node<Key, Value> *current, const Key &key) const;
+  //  Node<Key, Value> *internalFindHelper(Node<Key, Value> *current, const Key &key) const;
 };
 
 template <class Key, class Value>
@@ -172,14 +172,14 @@ AVLTree<Key, Value>::AVLTree(): root_(nullptr)
 //
 // }
 
-//
+
 // template<typename Key, typename Value>
 // Node<Key, Value>* AVLTree<Key, Value>::internalFind(const Key& key) const
 // {
 //     //std::cout << "AVLTree internal find" << std::endl;
 //     return internalFindHelper(static_cast<Node<Key, Value>*>(root_),key);
 // }
-//
+
 // template<typename Key, typename Value>
 //  Node<Key, Value>* AVLTree<Key, Value>::internalFindHelper(Node<Key, Value>* current, const Key& key) const {
 //         if (current == nullptr) {
@@ -198,7 +198,7 @@ AVLTree<Key, Value>::AVLTree(): root_(nullptr)
 //
 //         return internalFindHelper(current->getRight(), key);
 //     }
-//
+
       
 template<class Key, class Value>
 AVLNode<Key, Value>* AVLTree<Key, Value>::leftRotate(AVLNode<Key, Value>* x) {
