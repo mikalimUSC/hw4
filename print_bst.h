@@ -58,6 +58,7 @@ int getSubtreeHeight(Node<Key, Value> * root, int recursionDepth = 1)
         return 0;
     }
 
+
     return std::max(getSubtreeHeight(root->getLeft(), recursionDepth + 1),
                     getSubtreeHeight(root->getRight(), recursionDepth + 1)) + 1;
 }

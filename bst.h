@@ -562,7 +562,7 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
          
         //  std::cout << "current is  " << current->getKey();
     
-           std::cout << "Test test" << std::endl; 
+
         if (current->getParent() != nullptr) {
           //  std::cout << "current->getParent()->getLeft() is " << current->getParent()->getLeft()->getKey();
            // std::cout << "current is  " << current->getKey();
@@ -607,13 +607,9 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
       //  std::cout<<"Swapped " << current->getKey() << " and " << pred->getKey()<< std::endl;
         nodeSwap(current, pred); 
        // std::cout << "current is " << current->getKey()<< std::endl;
-        remove(key);
-    
-      
-      
+        this->remove(key);
         
     }
- 
 }
 
 
