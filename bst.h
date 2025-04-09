@@ -239,7 +239,7 @@ public:
 
 protected:
     // Mandatory helper functions
-    virtual Node<Key, Value>* internalFind(const Key& k) const; // TODO
+     Node<Key, Value>* internalFind(const Key& k) const; // TODO
     Node<Key, Value>* internalFindHelper(Node<Key, Value>* current, const Key& key) const;
     int getHeight(Node<Key, Value>* node) const;
     bool isBalancedHelper(Node<Key, Value>* node) const;
