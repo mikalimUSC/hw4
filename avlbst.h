@@ -262,6 +262,7 @@ AVLNode<Key, Value> *AVLTree<Key, Value>::rightRotate(AVLNode<Key, Value> *y) {
     y->setParent(x);
 
 
+
     //  std::cout << "x right is " << x->getRight()->getKey() << std::endl;
     y->setBalance((getSubtreeHeight(y->getLeft()) - getSubtreeHeight(y->getRight())));
     //  std::cout << "subtree height of x left "<< (getSubtreeHeight(x->getLeft())) << "subtree height of x right " << (getSubtreeHeight(x->getRight()))<<std::endl ;
@@ -317,9 +318,7 @@ void AVLTree<Key, Value>::insert(const std::pair<const Key, Value> &keyValuePair
     }
 
 
-    // std::cout << "before rebalance " << newNode->getKey() << " has balance of " << static_cast<int>(newNode->getBalance()) << std::endl;
-    //   std::cout << "before rebalance" << root_->getKey() << " has balance of " << static_cast<int>(root_->getBalance()) << std::endl;
-    AVLNode<Key, Value> *parent = newNode->getParent();
+   AVLNode<Key, Value> *parent = newNode->getParent();
     while (parent != nullptr) {
         if (newNode == parent->getLeft()) {
             parent->updateBalance(1);
@@ -343,6 +342,7 @@ void AVLTree<Key, Value>::insert(const std::pair<const Key, Value> &keyValuePair
 
 template<class Key, class Value>
 void AVLTree<Key, Value>::rebalance(AVLNode<Key, Value> *node) {
+    std::cout << " " << node->getKey() << "balance now " << static_cast<int>(node->getBalance()) << std::endl;
     if (node->getBalance() == 2) {
        // std::cout << "Node balance: " << static_cast<int>(node->getBalance()) << std::endl;
         if (node->getLeft() != nullptr) {
@@ -367,6 +367,9 @@ void AVLTree<Key, Value>::rebalance(AVLNode<Key, Value> *node) {
         }else {
             std::cout << "Right rotating " << node->getKey() << std::endl;
             rightRotate(node);
+
+
+
         }
 
     }
@@ -382,8 +385,6 @@ AVLNode<Key, Value> *AVLTree<Key, Value>::getSmallestNode() const {
     }
     return current;
 }
-
-
 /*
  * Recall: The writeup specifies that if a node has 2 children you
  * should swap with the predecessor and then remove.
@@ -453,8 +454,7 @@ void AVLTree<Key, Value>::removeHelper(const Key &key) {
         int leftHeight = (ancestor->getLeft() != nullptr) ? getSubtreeHeight(ancestor->getLeft()) : 0;
         int rightHeight = (ancestor->getRight() != nullptr) ? getSubtreeHeight(ancestor->getRight()) : 0;
 
-        ancestor->setBalance(rightHeight - leftHeight); // Update balance factor
-
+        ancestor->setBalance(leftHeight - rightHeight); // Update balance factor
 
         if (ancestor->getBalance() == 2 || ancestor->getBalance() == -2) {
             rebalance(ancestor);
