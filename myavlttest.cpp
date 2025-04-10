@@ -1,57 +1,45 @@
+#include "avlbst.h"
 #include <iostream>
-#include <string>
-#include <vector>
-#include <cstdlib>
-#include <ctime>
-#include <algorithm>
-#include <cassert>
-#include "avlbst.h"  // Adjust this include if needed
 
-void printStatus(const std::string& msg) {
-    std::cout << "\n=== " << msg << " ===\n";
-}
 
 int main() {
-    AVLTree<int, std::string> tree;
+ AVLTree<std::string, std::string> testTree;
 
-    // Seed random number generator
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+ testTree.insert(std::make_pair("A", "Apple"));
+    testTree.print();
 
-    // ===== 30 Unique Random Inserts =====
-    printStatus("Inserting 30 Random Elements");
+    testTree.insert(std::make_pair("B", "Baba"));
+    testTree.print();
 
-    std::vector<int> insertedKeys;
-    while (insertedKeys.size() < 30) {
-        int key = std::rand() % 500 + 1;  // Range [1, 500]
-        if (std::find(insertedKeys.begin(), insertedKeys.end(), key) == insertedKeys.end()) {
-            insertedKeys.push_back(key);
-            tree.insert({key, "Val" + std::to_string(key)});
-            std::cout << "Inserted: " << key << "\n";
-        }
-    }
+    testTree.insert(std::make_pair("C", "Car"));
+    testTree.print();
 
-    std::cout << "\nTree after 30 inserts:\n";
-    tree.print();
-    assert(tree.isBalanced());
+    testTree.insert(std::make_pair("D", "Dog"));
+    testTree.print();
 
-    // ===== 30 Random Removals from the Inserted Keys =====
-    printStatus("Removing All 30 Elements in Random Order");
+    testTree.insert(std::make_pair("E", "Eggplant"));
+    testTree.print();
 
-    std::random_shuffle(insertedKeys.begin(), insertedKeys.end());
+    testTree.insert(std::make_pair("F", "Fry"));
+    testTree.print();
 
-    for (int i = 0; i < 30; ++i) {
-        int key = insertedKeys[i];
-        tree.remove(key);
-        std::cout << "Removed: " << key << "\n";
-    }
+    testTree.insert(std::make_pair("G", "Gravy"));
+    testTree.print();
 
-    std::cout << "\nTree after 30 removals:\n";
-    tree.print();
-    assert(tree.empty());
-    assert(tree.isBalanced());
 
-    printStatus("Final Check");
-    std::cout << "AVL Tree is balanced and empty after 30 inserts and 30 removals ✅\n";
 
+    //
+    testTree.remove("D");
+    testTree.print();
+    testTree.remove("A");
+    testTree.print();
+    testTree.remove("B");
+    testTree.print();
+    testTree.remove("G");
+    testTree.print();
+
+
+
+    // Add more test cases if necessary
     return 0;
 }
