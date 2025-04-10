@@ -280,7 +280,7 @@ AVLNode<Key, Value> *AVLTree<Key, Value>::rightRotate(AVLNode<Key, Value> *y) {
 template<class Key, class Value>
 void AVLTree<Key, Value>::insert(const std::pair<const Key, Value> &keyValuePair) {
     AVLNode<Key, Value> *newNode = new AVLNode<Key, Value>(keyValuePair.first, keyValuePair.second, nullptr);
-    int8_t ogbalance = newNode->getBalance();
+    //int8_t ogbalance = newNode->getBalance();
     // std::cout << "New node balance is " << static_cast<int>(newNode->getBalance()) << std::endl;
     if (this->root_ == nullptr) {
         this->root_ = newNode;
@@ -331,18 +331,19 @@ void AVLTree<Key, Value>::insert(const std::pair<const Key, Value> &keyValuePair
         } else if (parent->getBalance() == -2 || parent->getBalance() == 2) {
             //    std::cout << "rebalancing parent " << parent->getKey()<< "Because it's balance is "<< static_cast<int>(parent->getBalance()) << std::endl;
             rebalance(parent);
-            break;
+             break;
         }
 
         newNode = parent;
         parent = newNode->getParent();
     }
+	 
 }
 
 
 template<class Key, class Value>
 void AVLTree<Key, Value>::rebalance(AVLNode<Key, Value> *node) {
-    std::cout << " " << node->getKey() << "balance now " << static_cast<int>(node->getBalance()) << std::endl;
+  //  std::cout << " " << node->getKey() << "balance now " << static_cast<int>(node->getBalance()) << std::endl;
     if (node->getBalance() == 2) {
        // std::cout << "Node balance: " << static_cast<int>(node->getBalance()) << std::endl;
         if (node->getLeft() != nullptr) {
@@ -350,7 +351,8 @@ void AVLTree<Key, Value>::rebalance(AVLNode<Key, Value> *node) {
                 rightRotate(node);
             } else {
                 leftRotate(node->getLeft());
-                rightRotate(node);
+                node = rightRotate(node);
+        
             }
 
         }else {
@@ -362,7 +364,8 @@ void AVLTree<Key, Value>::rebalance(AVLNode<Key, Value> *node) {
                 leftRotate(node);
             } else {
                 rightRotate(node->getRight());
-                leftRotate(node);
+                node = leftRotate(node);
+ 
             }
         }else {
             std::cout << "Right rotating " << node->getKey() << std::endl;
@@ -458,6 +461,7 @@ void AVLTree<Key, Value>::removeHelper(const Key &key) {
 
         if (ancestor->getBalance() == 2 || ancestor->getBalance() == -2) {
             rebalance(ancestor);
+						ancestor = ancestor->getParent();
             break;
         }
 
