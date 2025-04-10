@@ -164,39 +164,6 @@ template<class Key, class Value>
 AVLTree<Key, Value>::AVLTree() {
 }
 
-// template<class Key, class Value>
-// void AVLTree<Key, Value>::print() const {
-//     // Cast root_ to Node* before passing to printRoot AUAGHH
-//     this->printRoot(root_);
-//     std::cout << "\n";
-// }
-
-// //
-// template<typename Key, typename Value>
-// AVLNode<Key, Value> *AVLTree<Key, Value>::internalFind(const Key &key) const {
-//     //std::cout << "AVLTree internal find" << std::endl;
-//     return dynamic_cast<AVLNode<Key, Value>*>(internalFindHelper(this->root_, key));
-// }
-
-// template<typename Key, typename Value>
-// AVLNode<Key, Value> *AVLTree<Key, Value>::internalFindHelper(AVLNode<Key, Value> *current, const Key &key) const {
-//     if (current == nullptr) {
-//         return nullptr;
-//     }
-//
-//     if (current->getKey() == key) {
-//         return current;
-//     }
-//
-//
-//     AVLNode<Key, Value> *foundLeft = internalFindHelper(current->getLeft(), key);
-//     if (foundLeft != nullptr) {
-//         return foundLeft;
-//     }
-//
-//     return internalFindHelper(current->getRight(), key);
-// }
-
 
 template<class Key, class Value>
 AVLNode<Key, Value> *AVLTree<Key, Value>::leftRotate(AVLNode<Key, Value> *x) {
@@ -342,7 +309,7 @@ void AVLTree<Key, Value>::insert(const std::pair<const Key, Value> &keyValuePair
 
 template<class Key, class Value>
 void AVLTree<Key, Value>::rebalance(AVLNode<Key, Value> *node) {
-    std::cout << " " << node->getKey() << "balance now " << static_cast<int>(node->getBalance()) << std::endl;
+   // std::cout << " " << node->getKey() << "balance now " << static_cast<int>(node->getBalance()) << std::endl;
     if (node->getBalance() == 2) {
        // std::cout << "Node balance: " << static_cast<int>(node->getBalance()) << std::endl;
         if (node->getLeft() != nullptr) {
@@ -365,7 +332,7 @@ void AVLTree<Key, Value>::rebalance(AVLNode<Key, Value> *node) {
                 leftRotate(node);
             }
         }else {
-            std::cout << "Right rotating " << node->getKey() << std::endl;
+           // std::cout << "Right rotating " << node->getKey() << std::endl;
             rightRotate(node);
 
 
