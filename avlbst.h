@@ -130,7 +130,6 @@ class AVLTree : public BinarySearchTree<Key, Value> {
 public:
     AVLTree();
 
-    // void print() const;
 
     virtual void insert(const std::pair<const Key, Value> &new_item) override; // TODO
     virtual void remove(const Key &key) override; // TODO
@@ -152,50 +151,12 @@ protected:
 
     virtual AVLNode<Key, Value> *getSmallestNode() const override;
 
-
-
-
-    // AVLNode<Key, Value> *internalFind(const Key &key) const override;
-    //
-    // AVLNode<Key, Value> *internalFindHelper(AVLNode<Key, Value> *current, const Key &key) const;
 };
 
 template<class Key, class Value>
 AVLTree<Key, Value>::AVLTree() {
 }
 
-// template<class Key, class Value>
-// void AVLTree<Key, Value>::print() const {
-//     // Cast root_ to Node* before passing to printRoot AUAGHH
-//     this->printRoot(root_);
-//     std::cout << "\n";
-// }
-
-// //
-// template<typename Key, typename Value>
-// AVLNode<Key, Value> *AVLTree<Key, Value>::internalFind(const Key &key) const {
-//     //std::cout << "AVLTree internal find" << std::endl;
-//     return dynamic_cast<AVLNode<Key, Value>*>(internalFindHelper(this->root_, key));
-// }
-
-// template<typename Key, typename Value>
-// AVLNode<Key, Value> *AVLTree<Key, Value>::internalFindHelper(AVLNode<Key, Value> *current, const Key &key) const {
-//     if (current == nullptr) {
-//         return nullptr;
-//     }
-//
-//     if (current->getKey() == key) {
-//         return current;
-//     }
-//
-//
-//     AVLNode<Key, Value> *foundLeft = internalFindHelper(current->getLeft(), key);
-//     if (foundLeft != nullptr) {
-//         return foundLeft;
-//     }
-//
-//     return internalFindHelper(current->getRight(), key);
-// }
 
 
 template<class Key, class Value>
